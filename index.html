@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اسفه من قلبي ي يوسف</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #fff5fb;
+  background:
+    radial-gradient(circle at top left, #50314f, transparent 45%),
+    radial-gradient(circle at bottom right, #343052, transparent 40%),
+    #171326;
+}
+
+.app {
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+}
+
+.top {
+  color: #e9a9c4;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.card {
+  min-height: 420px;
+  padding: 30px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e9a9c455;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #302641, #211a31);
+  box-shadow: 0 20px 60px #0005;
+}
+
+.heart {
+  font-size: 38px;
+  color: #e9a9c4;
+  margin-bottom: 25px;
+}
+
+.kicker {
+  color: #e9a9c4;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.message {
+  font-size: 23px;
+  line-height: 2;
+  white-space: pre-line;
+  animation: appear .4s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.progress {
+  height: 4px;
+  background: #ffffff20;
+  border-radius: 10px;
+  margin-top: 18px;
+  overflow: hidden;
+}
+
+#bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #e9a9c4, #c9b5f5);
+  transition: width .3s;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+button {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+#next {
+  flex: 1;
+  background: linear-gradient(135deg, #e9a9c4, #c9b5f5);
+  color: #24182d;
+}
+
+#back {
+  background: #ffffff15;
+  border: 1px solid #ffffff25;
+  color: white;
+}
+
+button:disabled {
+  opacity: .35;
+}
+
+#count {
+  color: #b8a9c2;
+  font-size: 12px;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+  <div class="top">كلام من قلبي ليوسف 🤍</div>
+
+  <section class="card">
+    <div class="heart">♡</div>
+    <div class="kicker" id="kicker"></div>
+    <div class="message" id="message"></div>
+  </section>
+
+  <div class="progress">
+    <div id="bar"></div>
+  </div>
+
+  <div class="buttons">
+    <button id="back" disabled>رجوع</button>
+    <button id="next">Next</button>
+  </div>
+
+  <div id="count"></div>
+
+</main>
+
+<script>
+const slides = [
+  {
+    title: "كلام من قلبي",
+    text: "يوسف انا محتاجه اقولك حاجه من قلبي"
+  },
+  {
+    title: "انا عارفه اني غلطت",
+    text: "انا عارفه انك زعلان مني وعارفه ان عندك حق تزعل\nانا عملت الاكونت من وراك وخبيت عليك وده كان غلط مني"
+  },
+  {
+    title: "مش هبرر لنفسي",
+    text: "انا مش بقول الكلام ده عشان ابرر اللي عملته\nولا عشان اقلل من زعلك\nانا فاهمه اني جرحت ثقتك"
+  },
+  {
+    title: "انا زعلانه من نفسي",
+    text: "انا زعلانه من نفسي اوي على اللي عملته\nومضايقه اني خليتك تعرف بالطريقه دي\nكان المفروض اكون صريحه معاك من الاول"
+  },
+  {
+    title: "انا خايفه اخسرك",
+    text: "انا خايفه اخسرك ومش هكدب عليك\nانت فارق معايا اوي وكونك زعلان مني واجعني\nبس عارفه ان خوفي مش عذر لغلطي"
+  },
+  {
+    title: "نفسي تفهمني",
+    text: "انا مش بطلب منك تنسى اللي حصل في لحظه\nولا انك تسامحني غصب عنك\nانا بس نفسي تديني فرصه اصلح غلطتي بالافعال مش بالكلام"
+  },
+  {
+    title: "خد وقتك",
+    text: "خد وقتك يا يوسف\nولو حبيت نتكلم انا هسمعك وهحاول افهم زعلك\nومش هقلل من اللي انت حسيته"
+  },
+  {
+    title: "من يورا",
+    text: "انا اسفه بجد يا يوسف\nانا ندمانه على اني خبيت عليك\nومش هقدر اغير اللي حصل بس اقدر اتعلم من غلطتي\nواتمنى مع الوقت اقدر اصلح اللي بوظته ❤️"
+  }
+];
+
+let current = 0;
+
+const message = document.getElementById("message");
+const kicker = document.getElementById("kicker");
+const next = document.getElementById("next");
+const back = document.getElementById("back");
+const count = document.getElementById("count");
+const bar = document.getElementById("bar");
+
+function showSlide() {
+  message.style.animation = "none";
+  void message.offsetWidth;
+  message.style.animation = "appear .4s ease";
+
+  kicker.textContent = slides[current].title;
+  message.textContent = slides[current].text;
+
+  count.textContent =
+    (current + 1) + " من " + slides.length;
+
+  bar.style.width =
+    ((current + 1) / slides.length * 100) + "%";
+
+  back.disabled = current === 0;
+
+  next.textContent =
+    current === slides.length - 1
+      ? "من الاول ❤️"
+      : "Next";
+}
+
+next.addEventListener("click", () => {
+  if (current === slides.length - 1) {
+    current = 0;
+  } else {
+    current++;
+  }
+
+  showSlide();
+});
+
+back.addEventListener("click", () => {
+  if (current > 0) {
+    current--;
+    showSlide();
+  }
+});
+
+showSlide();
+</script>
+
+</body>
+</html>
